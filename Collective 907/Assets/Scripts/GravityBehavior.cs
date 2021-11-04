@@ -9,6 +9,8 @@ using UnityEngine;
 public class GravityBehavior : MonoBehaviour
 {
     public float RelativeWeight;
+    // playerGravity is the vector of the force of gravity acting on the player
+    public float playerGravity;
     GameObject player;
     // Start is called before the first frame update
     void Start()
@@ -30,7 +32,9 @@ public class GravityBehavior : MonoBehaviour
 
         // Offset squared:
         masgqr = offset.sqrMagnitude;
-
+        playerGravity = masgqr;
+        
+        /*
         // Check distance is more than 0 to prevent division by 0
         if (masgqr > 0.0001f) {
             // Create the gravity - make it realistic through division
@@ -40,6 +44,7 @@ public class GravityBehavior : MonoBehaviour
                 * GetComponent<Rigidbody>().mass
             );
         }
+        */
     }
 
     // Update is called once per frame
