@@ -4,27 +4,28 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float speed;
-    public float rotationSpeed;
+    private float speed;
+    private float rotationSpeed;
     CharacterController characterController;
     GameObject planetCore;
-    public Camera currentCameara, cam1, cam2;
+    private Camera currentCamera, cam1, cam2;
 
     // Start is called before the first frame update
     void Start()
     {
         characterController = GetComponent<CharacterController>();
         planetCore = GameObject.FindGameObjectWithTag("Core");
-        currentCameara = Camera.main;
+        currentCamera = Camera.main;
         cam1.enabled = true;
         cam2.enabled = false;
     }
 
-    // Update is called once per frame
+    // FixedUpdate is called once per frame
     void FixedUpdate()
     {
-        Vector3 relativeToCore = (transform.position - planetCore.transform.position);
-        // character movement
+        // Vector3 relativeToCore = transform.position - planetCore.transform.position;
+
+        // Character movement
         Vector3 movement = 
             currentCameara.transform.right * Input.GetAxis("Horizontal") 
             + currentCameara.transform.forward * Input.GetAxis("Vertical");
@@ -32,12 +33,12 @@ public class Player : MonoBehaviour
         movement *= speed * Time.deltaTime;
         characterController.SimpleMove(movement);
 
-        // rotate
-        Vector3 cameraDirection = currentCameara.transform.forward;
-        cameraDirection.y = 0;
-        transform.LookAt(transform.position + cameraDirection);
+        // Rotate
+        // Vector3 cameraDirection = currentCameara.transform.forward;
+        // cameraDirection.y = 0;
+        // transform.LookAt(transform.position + cameraDirection);
 
-        // toggle camera POVs
+        // Toggle camera POVs
         if (Input.GetKeyDown(KeyCode.C))
         {
             cam1.enabled = !cam1.enabled;
@@ -45,9 +46,9 @@ public class Player : MonoBehaviour
         }
     }
 
-    void LateUpdate() 
+    void LateUpdate()
     {
-        // determine the player's position from the core
+        // Determine the player's position from the core
         Quaternion targetRotation = Quaternion.LookRotation (planetCore.transform.position - transform.position);
         float str = Mathf.Min(rotationSpeed * Time.deltaTime, 1);
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, str);
