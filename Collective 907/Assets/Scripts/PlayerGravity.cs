@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class PlayerGravity : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    // Declare a game object named planetCore
+    private GameObject[] planetCore;
+    // Declare characterController
+    private CharacterController characterController;
+    void Start(){
+        planetCore = GameObject.FindGameObjectWithTag("Core");
+        characterController = GetComponent<CharacterController>();
     }
-
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+        // Grab the playerGravity from GravityBehavior and move this object that vector
+        // Initialize a Vector3 to the zero vector
+        Vector3 gravitySum = Vector3.zero;
+        for (int i = 0; i < planetCore.Length; i++){
+            // Add the playerGravity of the planetCore to the gravitySum
+            gravitySum += planetCore[i].GetComponent<GravityBehavior>().playerGravity;
+        }
+        characterController.Move(gravitySum);
     }
 }
