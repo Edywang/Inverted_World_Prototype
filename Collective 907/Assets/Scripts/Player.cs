@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Vector3 relativeToCore = (transform.position - planetCore.transform.position);
         // character movement
