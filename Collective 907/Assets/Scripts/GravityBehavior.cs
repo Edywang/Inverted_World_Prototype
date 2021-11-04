@@ -31,7 +31,7 @@ public class GravityBehavior : MonoBehaviour
         // Log the player's position
         Debug.Log("Player's position " + player.transform.position);
         // get offset between each planet and the player
-        offset = transform.position - player.transform.position;
+        offset = player.transform.position - transform.position;
         // Log the offset
         Debug.Log(offset);
         // Offset squared:
