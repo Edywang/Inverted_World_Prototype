@@ -26,7 +26,10 @@ public class GravityBehavior : MonoBehaviour
 
         // offset of the distance to planet
         Vector3 offset;
-
+        // Log the core's position
+        Debug.Log("Core's position " + transform.position);
+        // Log the player's position
+        Debug.Log("Player's position " + player.transform.position);
         // get offset between each planet and the player
         offset = transform.position - player.transform.position;
         // Log the offset
