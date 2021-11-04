@@ -10,7 +10,7 @@ public class GravityBehavior : MonoBehaviour
 {
     public float RelativeWeight;
     // playerGravity is the vector of the force of gravity acting on the player
-    public float playerGravity;
+    public Vector3 playerGravity;
     GameObject player;
     // Start is called before the first frame update
     void Start()
