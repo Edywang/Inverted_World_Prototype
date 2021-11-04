@@ -26,7 +26,7 @@ public class GravityBehavior : MonoBehaviour
         Vector3 offset;
 
         // get offset between each planet and the player
-        offset = player.transform.position - transform.position;
+        offset = transform.position - player.transform.position;
 
         // Offset squared:
         masgqr = offset.sqrMagnitude;
