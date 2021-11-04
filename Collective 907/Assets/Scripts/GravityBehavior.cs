@@ -29,7 +29,8 @@ public class GravityBehavior : MonoBehaviour
 
         // get offset between each planet and the player
         offset = transform.position - player.transform.position;
-
+        // Log the offset
+        Debug.Log(offset);
         // Offset squared:
         // masgqr = offset.sqrMagnitude;
         // Set the playerGravity to the square root of the vector offset
@@ -47,6 +48,8 @@ public class GravityBehavior : MonoBehaviour
         {
             playerGravity[2] = -playerGravity[2];
         }
+        // Log "playerGravity adjusted" and the playerGravity
+        Debug.Log("playerGravity adjusted " + playerGravity);
         // playerGravity = Vector3.SquareRoot(offset);
         
         /*
