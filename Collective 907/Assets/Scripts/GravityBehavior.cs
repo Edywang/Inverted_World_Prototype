@@ -33,9 +33,9 @@ public class GravityBehavior : MonoBehaviour
         // Offset squared:
         // masgqr = offset.sqrMagnitude;
         // Set the playerGravity to the square root of the vector offset
-        playerGravity = offset.normalized;
         // Assign playerGravity as a Vector3 with the same values as offset square rooted
         playerGravity = new Vector3(Mathf.Sqrt(offset.x), Mathf.Sqrt(offset.y), Mathf.Sqrt(offset.z));
+        playerGravity *= offset.normalized;
         // playerGravity = Vector3.SquareRoot(offset);
         
         /*
