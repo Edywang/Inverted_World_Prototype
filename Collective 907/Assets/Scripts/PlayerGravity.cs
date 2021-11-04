@@ -9,7 +9,8 @@ public class PlayerGravity : MonoBehaviour
     // Declare characterController
     private CharacterController characterController;
     void Start(){
-        planetCore = GameObject.FindGameObjectWithTag("Core");
+        // Grab the game objects with the tag "Core"
+        planetCore = GameObject.FindGameObjectsWithTag("Core");
         characterController = GetComponent<CharacterController>();
     }
     // Update is called once per frame
