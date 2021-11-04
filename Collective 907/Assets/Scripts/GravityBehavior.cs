@@ -32,7 +32,7 @@ public class GravityBehavior : MonoBehaviour
 
         // Offset squared:
         masgqr = offset.sqrMagnitude;
-        playerGravity = masgqr;
+        playerGravity = Vector3.SquareRoot(offset);
         
         /*
         // Check distance is more than 0 to prevent division by 0
