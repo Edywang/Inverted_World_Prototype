@@ -22,7 +22,7 @@ public class GravityBehavior : MonoBehaviour
     void FixedUpdate()
     {
         // offset squared between the object and the planet
-        float masgqr;
+        // float masgqr;
 
         // offset of the distance to planet
         Vector3 offset;
