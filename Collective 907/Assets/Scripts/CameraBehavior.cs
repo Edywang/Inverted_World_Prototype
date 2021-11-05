@@ -10,6 +10,7 @@ public class CameraBehavior : MonoBehaviour
 
     public float mouseSensitivity = 1f;
     public Transform playerBody;
+    public Transform playerModel;
     float xRotation = 0f;
     float yRotation = 0f;
     // Start is called before the first frame update
@@ -27,9 +28,10 @@ public class CameraBehavior : MonoBehaviour
 
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
-        //transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-        transform.Rotate(-mouseY, mouseX, 0);
-        //playerBody.Rotate(Vector3.up * mouseX);
+        transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        //transform.Rotate(-mouseY, mouseX, 0);
+        playerBody.Rotate(Vector3.up * mouseX);
+        playerModel.Rotate(Vector3.up * mouseX);
         
     }
     private void LateUpdate()
