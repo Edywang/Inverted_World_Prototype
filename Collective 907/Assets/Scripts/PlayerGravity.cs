@@ -23,6 +23,9 @@ public class PlayerGravity : MonoBehaviour
             // Add the playerGravity of the planetCore to the gravitySum
             gravitySum += planetCore[i].GetComponent<GravityBehavior>().playerGravity;
         }
-        characterController.Move(gravitySum);
+        if(!characterController.isGrounded) {
+            characterController.Move(gravitySum*6.67384e-2f);
+        }
+        //characterController.Move(gravitySum*6.67384e-2f);
     }
 }
