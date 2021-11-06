@@ -7,7 +7,6 @@ TagManager:
   - Core
   - Planet
   - UITag
-  - Enemy
   layers:
   - Default
   - TransparentFX
