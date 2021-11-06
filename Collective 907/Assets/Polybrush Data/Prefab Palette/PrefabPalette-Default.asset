@@ -15,7 +15,7 @@ MonoBehaviour:
   prefabs:
   - gameObject: {fileID: 919132149155446097, guid: 83dfd4fb49092784994c81cd09865ef0, type: 3}
     settings:
-      m_Strength: 50
+      m_Strength: 18.00718
       m_RotationRangeMin: {x: 0, y: 0, z: 0}
       m_RotationRangeMax: {x: 0, y: 0, z: 0}
       m_ScaleRangeMin: {x: 1, y: 1, z: 1}
@@ -31,7 +31,7 @@ MonoBehaviour:
     name: rock6
   - gameObject: {fileID: 919132149155446097, guid: bdf3f937edca36e42801ca9766634d1c, type: 3}
     settings:
-      m_Strength: 50
+      m_Strength: 21.561937
       m_RotationRangeMin: {x: 0, y: 0, z: 0}
       m_RotationRangeMax: {x: 0, y: 0, z: 0}
       m_ScaleRangeMin: {x: 1, y: 1, z: 1}
@@ -47,7 +47,7 @@ MonoBehaviour:
     name: boulder1
   - gameObject: {fileID: 919132149155446097, guid: a8af3750099f4f5439fd43a7e2d2827e, type: 3}
     settings:
-      m_Strength: 50
+      m_Strength: 10.508987
       m_RotationRangeMin: {x: 0, y: 0, z: 0}
       m_RotationRangeMax: {x: 0, y: 0, z: 0}
       m_ScaleRangeMin: {x: 1, y: 1, z: 1}
@@ -79,7 +79,7 @@ MonoBehaviour:
     name: boulder3
   - gameObject: {fileID: 919132149155446097, guid: 97ddcd338276d2140acd811b66eedb17, type: 3}
     settings:
-      m_Strength: 50
+      m_Strength: 19.784561
       m_RotationRangeMin: {x: 0, y: 0, z: 0}
       m_RotationRangeMax: {x: 0, y: 0, z: 0}
       m_ScaleRangeMin: {x: 1, y: 1, z: 1}
@@ -95,7 +95,7 @@ MonoBehaviour:
     name: boulder4
   - gameObject: {fileID: 919132149155446097, guid: e4bbdb83174ba13419dc22af25d6a0e6, type: 3}
     settings:
-      m_Strength: 50
+      m_Strength: 12.286354
       m_RotationRangeMin: {x: 0, y: 0, z: 0}
       m_RotationRangeMax: {x: 0, y: 0, z: 0}
       m_ScaleRangeMin: {x: 1, y: 1, z: 1}
@@ -111,7 +111,7 @@ MonoBehaviour:
     name: boulder5
   - gameObject: {fileID: 919132149155446097, guid: 2a1250b28f4c93f42bd497828e02d338, type: 3}
     settings:
-      m_Strength: 50
+      m_Strength: 12.286364
       m_RotationRangeMin: {x: 0, y: 0, z: 0}
       m_RotationRangeMax: {x: 0, y: 0, z: 0}
       m_ScaleRangeMin: {x: 1, y: 1, z: 1}
@@ -207,7 +207,7 @@ MonoBehaviour:
     name: grass3
   - gameObject: {fileID: 919132149155446097, guid: 100ad8c0b60602f408674a427604309a, type: 3}
     settings:
-      m_Strength: 50
+      m_Strength: 71.328545
       m_RotationRangeMin: {x: 0, y: 0, z: 0}
       m_RotationRangeMax: {x: 0, y: 0, z: 0}
       m_ScaleRangeMin: {x: 1, y: 1, z: 1}
@@ -223,7 +223,7 @@ MonoBehaviour:
     name: oaktree1
   - gameObject: {fileID: 919132149155446097, guid: b676bc22fe0b1554fb5e12a6f8a20198, type: 3}
     settings:
-      m_Strength: 50
+      m_Strength: 70.93987
       m_RotationRangeMin: {x: 0, y: 0, z: 0}
       m_RotationRangeMax: {x: 0, y: 0, z: 0}
       m_ScaleRangeMin: {x: 1, y: 1, z: 1}
@@ -239,7 +239,7 @@ MonoBehaviour:
     name: oaktree2
   - gameObject: {fileID: 919132149155446097, guid: 1361bf6208a108643be3dce0f68df445, type: 3}
     settings:
-      m_Strength: 50
+      m_Strength: 74.8833
       m_RotationRangeMin: {x: 0, y: 0, z: 0}
       m_RotationRangeMax: {x: 0, y: 0, z: 0}
       m_ScaleRangeMin: {x: 1, y: 1, z: 1}
@@ -255,7 +255,7 @@ MonoBehaviour:
     name: oaktree3
   - gameObject: {fileID: 919132149155446097, guid: 8d873ba3776b7674da20312b564885ee, type: 3}
     settings:
-      m_Strength: 50
+      m_Strength: 81.604126
       m_RotationRangeMin: {x: 0, y: 0, z: 0}
       m_RotationRangeMax: {x: 0, y: 0, z: 0}
       m_ScaleRangeMin: {x: 1, y: 1, z: 1}
@@ -271,7 +271,7 @@ MonoBehaviour:
     name: pinetree1
   - gameObject: {fileID: 919132149155446097, guid: 2ced9614a8ec79945ab3866b52bb9d7c, type: 3}
     settings:
-      m_Strength: 50
+      m_Strength: 72.71724
       m_RotationRangeMin: {x: 0, y: 0, z: 0}
       m_RotationRangeMax: {x: 0, y: 0, z: 0}
       m_ScaleRangeMin: {x: 1, y: 1, z: 1}
@@ -287,7 +287,7 @@ MonoBehaviour:
     name: pinetree2
   - gameObject: {fileID: 919132149155446097, guid: 8657cdf405ffc4f4eab9e5b9117e27da, type: 3}
     settings:
-      m_Strength: 50
+      m_Strength: 65.99641
       m_RotationRangeMin: {x: 0, y: 0, z: 0}
       m_RotationRangeMax: {x: 0, y: 0, z: 0}
       m_ScaleRangeMin: {x: 1, y: 1, z: 1}
@@ -303,7 +303,7 @@ MonoBehaviour:
     name: pinetree3
   - gameObject: {fileID: 919132149155446097, guid: 36d918b79609f804ba75990f923d0e91, type: 3}
     settings:
-      m_Strength: 50
+      m_Strength: 3.399472
       m_RotationRangeMin: {x: 0, y: 0, z: 0}
       m_RotationRangeMax: {x: 0, y: 0, z: 0}
       m_ScaleRangeMin: {x: 1, y: 1, z: 1}
