@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     public float rotationSpeed;
     CharacterController characterController;
     GameObject planetCore;
-    private Camera currentCamera, cam1, cam2;
+    public Camera currentCamera, cam1, cam2;
     private Vector3 moveDirection;
     public Vector3 upDirection;
 
@@ -69,14 +69,23 @@ public class Player : MonoBehaviour
         }
     }
 
-    void LateUpdate()
-    {
-        // Determine the player's position from the core
-        //Vector3.Angle(lastDirection, upDirection)
-        // transform.Rotate(upDirection);
-        // lastDirection = upDirection;
-        // Quaternion targetRotation = Quaternion.LookRotation (planetCore.transform.position - transform.position);
-        // float str = Mathf.Min(rotationSpeed * Time.deltaTime, 1);
-        // transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, str);
+    private void OnCollision(Collision other) {
+        if (other.gameObject.CompareTag("Enemy")) {
+            cam1.enabled = !cam1.enabled;
+            cam2.enabled = !cam2.enabled;
+            Destroy(other.gameObject);
+        }
     }
+
+
+    // void LateUpdate()
+    // {
+    //     // Determine the player's position from the core
+    //     //Vector3.Angle(lastDirection, upDirection)
+    //     // transform.Rotate(upDirection);
+    //     // lastDirection = upDirection;
+    //     // Quaternion targetRotation = Quaternion.LookRotation (planetCore.transform.position - transform.position);
+    //     // float str = Mathf.Min(rotationSpeed * Time.deltaTime, 1);
+    //     // transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, str);
+    // }
 }
