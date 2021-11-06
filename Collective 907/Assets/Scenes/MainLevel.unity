@@ -406,8 +406,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f395011b128fc3d42b9d8ec8c632d7a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RelativeWeight: 0
-  playerGravity: {x: 0, y: 0, z: 0}
 --- !u!54 &1336062151
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -520,8 +518,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a91961a36e15db34da915ab4380441fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateSpeed: 0
-  offset: {x: 0, y: 0, z: 0}
 --- !u!1 &1715750048
 GameObject:
   m_ObjectHideFlags: 0
@@ -641,7 +637,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75580590c16019d46bfb60695babcb63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upDirection: {x: 0, y: 0, z: 0}
 --- !u!4 &2108858964
 Transform:
   m_ObjectHideFlags: 0
