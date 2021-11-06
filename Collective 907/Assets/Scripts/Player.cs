@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private float speed;
-    private float rotationSpeed;
+    private Vector3 lastDirection;
+    public Vector3 currentEulerAngles;
+    Quaternion currentRotation;
+    public float speed;
+    public float rotationSpeed;
     CharacterController characterController;
     GameObject planetCore;
     private Camera currentCamera, cam1, cam2;
@@ -17,6 +20,7 @@ public class Player : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
         planetCore = GameObject.FindGameObjectWithTag("Core");
+        lastDirection = transform.position - planetCore.transform.position;
         currentCamera = Camera.main;
         cam1.enabled = true;
         cam2.enabled = false;
@@ -36,16 +40,21 @@ public class Player : MonoBehaviour
         // movement = Vector3.ClampMagnitude(movement, 1);
         // movement *= speed * Time.deltaTime;
         // characterController.SimpleMove(movement);
-
         // Basic character movement based off character controller and moveDirection
+
         if (characterController.isGrounded){
             moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
             moveDirection = transform.TransformDirection(moveDirection);
             moveDirection *= speed * Time.deltaTime;
+            //characterController.SimpleMove(moveDirection);
         }
 
-        // Set the up direction to the normalized vector from the player to the core
+        // // Set the up direction to the normalized vector from the player to the core
         upDirection = transform.position - planetCore.transform.position;
+        // //transform.rotation = Vector3.Lerp(transform.position, planetCore.transform.position, rotationSpeed);
+        // currentEulerAngles = upDirection * Time.deltaTime * rotationSpeed;
+        // currentRotation.eulerAngles = currentEulerAngles;
+        // transform.rotation = currentRotation;
 
         // Rotate
         // Vector3 cameraDirection = currentCameara.transform.forward;
@@ -63,8 +72,11 @@ public class Player : MonoBehaviour
     void LateUpdate()
     {
         // Determine the player's position from the core
-        Quaternion targetRotation = Quaternion.LookRotation (planetCore.transform.position - transform.position);
-        float str = Mathf.Min(rotationSpeed * Time.deltaTime, 1);
-        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, str);
+        //Vector3.Angle(lastDirection, upDirection)
+        // transform.Rotate(upDirection);
+        // lastDirection = upDirection;
+        // Quaternion targetRotation = Quaternion.LookRotation (planetCore.transform.position - transform.position);
+        // float str = Mathf.Min(rotationSpeed * Time.deltaTime, 1);
+        // transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, str);
     }
 }
