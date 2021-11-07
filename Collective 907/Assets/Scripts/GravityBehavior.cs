@@ -8,7 +8,7 @@ using UnityEngine;
 */
 public class GravityBehavior : MonoBehaviour
 {
-    private Vector3 playerGravity;
+    public Vector3 playerGravity;
     private Vector3 playerDistance;
     GameObject player;
     // Start is called before the first frame update
