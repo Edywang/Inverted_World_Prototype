@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class CameraBehavior : MonoBehaviour
 {
-    GameObject player;
-    public float rotateSpeed;
-    public Vector3 offset;
-
     public float mouseSensitivity = 1f;
     public Transform playerBody;
     public Transform playerModel;
@@ -16,7 +12,6 @@ public class CameraBehavior : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
@@ -31,18 +26,5 @@ public class CameraBehavior : MonoBehaviour
         //transform.Rotate(-mouseY, mouseX, 0);
         playerBody.Rotate(Vector3.up * mouseX);
         playerModel.Rotate(Vector3.up * mouseX);
-        
-    }
-    private void LateUpdate()
-    {
-        // offset based on mouse input
-        // mouse x (horizontal)
-        //offset = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * rotateSpeed * Time.deltaTime, Vector3.up) * offset;
-        // mouse y (vertical, dependent on forward position)
-        //offset = Quaternion.AngleAxis(Input.GetAxis("Mouse Y") * rotateSpeed * Time.deltaTime, Vector3.forward) * offset;
-        // updates camera position based on player position
-        //transform.position = player.transform.position + offset;
-        // lookAt current player position
-        //transform.LookAt(player.transform);
     }
 }
