@@ -12,7 +12,6 @@ public class CameraBehavior : MonoBehaviour
     public Transform playerBody;
     public Transform playerModel;
     float xRotation = 0f;
-    float yRotation = 0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +26,7 @@ public class CameraBehavior : MonoBehaviour
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
 
         xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+        xRotation = Mathf.Clamp(xRotation, -90f, 50f);
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         //transform.Rotate(-mouseY, mouseX, 0);
         playerBody.Rotate(Vector3.up * mouseX);

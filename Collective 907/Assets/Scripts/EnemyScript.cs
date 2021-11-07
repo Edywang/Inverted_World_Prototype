@@ -10,18 +10,21 @@ public class EnemyScript : MonoBehaviour
     GameObject player;
     public float aggroRadius;
     Vector3 startPosition;
+    Animator anim;
 
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player");
+        anim = GetComponentInChildren<Animator>();
         startPosition = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
+        anim.SetBool("isAttacking", true);
         Vector3 vectortoTarget = player.transform.position - transform.position;
         float distanceToTarget = vectortoTarget.magnitude;
         if(distanceToTarget <= aggroRadius) {
