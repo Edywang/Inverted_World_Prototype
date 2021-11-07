@@ -29,7 +29,6 @@ public class Player : MonoBehaviour
         currentCamera = Camera.main;
         cam1.enabled = true;
         cam2.enabled = false;
-        Cursor.lockState = CursorLockMode.Locked;
         // Create a vector that is the character's orientation
     }
 
@@ -49,10 +48,13 @@ public class Player : MonoBehaviour
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
         // Rotate the character so transform.up is facing the planetCore.transform.position
         // Grab the object named Main Camera and rotate it by the mouse's x and y values
+        mouseMovement = new Vector3(-mouseY * mouseSensitivity, mouseX * mouseSensitivity, 0f);
         for(int i = 0; i < cameras.Length; i++)
         {
-            cameras[i].rotateHelper(Vector3(mouseY * mouseSensitivity, mouseX * mouseSensitivity, 0f), Space.Self);
+            cameras[i].rotateHelper(mouseMovement, Space.Self);
         }
+        transform.Rotate((mouseMovement.normalized - upDirection.normalized).normalized * mouseMovement.magnitude);
+
         // transform.Rotate(Quaternion.LookRotation(currentCamera.transform.forward, transform.forward));
         Debug.DrawRay(transform.position, transform.forward);
 
