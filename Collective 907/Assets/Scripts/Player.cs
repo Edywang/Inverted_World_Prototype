@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     public float speed;
     public float jumpForce;
+    public float mouseSensitivity;
     CharacterController characterController;
     GameObject planetCore;
     private Camera currentCamera, cam1, cam2;
@@ -19,6 +20,7 @@ public class Player : MonoBehaviour
         currentCamera = Camera.main;
         cam1.enabled = true;
         cam2.enabled = false;
+        Cursor.lockState = CursorLockMode.Locked;
         // Create a vector that is the character's orientation
     }
 
@@ -34,9 +36,11 @@ public class Player : MonoBehaviour
         // Debug.DrawRay(transform.position, upDirection);
 
         transform.LookAt(planetCore.transform.position);
-
+        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
+        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
         // Rotate the character so transform.up is facing the planetCore.transform.position
-        transform.Rotate(Quaternion.LookRotation(currentCamera.transform.forward, transform.forward));
+        currentCamera.Rotate(mouseY * mouseSensitivity, mouseX * mouseSensitivity, 0f);
+        // transform.Rotate(Quaternion.LookRotation(currentCamera.transform.forward, transform.forward));
         Debug.DrawRay(transform.position, transform.forward);
 
         // WASD movement using characterController
@@ -62,5 +66,6 @@ public class Player : MonoBehaviour
             cam1.enabled = !cam1.enabled;
             cam2.enabled = !cam2.enabled;
         }
+
     }
 }
