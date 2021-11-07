@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private float speed;
+    public float speed;
+    public float jumpForce;
     CharacterController characterController;
     GameObject planetCore;
     private Camera currentCamera, cam1, cam2;
@@ -54,7 +55,10 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.D)){
             characterController.Move(transform.right * speed * Time.deltaTime);
         }
-        
+        // Add jumping based off of jumpForce
+        if (Input.GetKey(KeyCode.Space) && characterController.isGrounded){
+            characterController.Move(transform.up * jumpForce * Time.deltaTime);
+        }
 
         // // Set the up direction to the normalized vector from the player to the core
         
