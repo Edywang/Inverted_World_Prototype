@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     CharacterController characterController;
     GameObject planetCore;
     private Camera currentCamera, cam1, cam2;
-    private GameObject[] cameras;
+    private CameraBehavior[] cameras;
     private Vector3 upDirection;
 
     // Start is called before the first frame update
@@ -19,6 +19,11 @@ public class Player : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         planetCore = GameObject.FindGameObjectWithTag("Core");
         cameraArray = GameObject.FindGameObjectsWithTag("MainCamera");
+        cameras = new CameraBehavior[cameraArray.Length];
+        for (int i = 0; i < cameraArray.Length; i++)
+        {
+            cameras[i] = cameraArray[i].GetComponent<CameraBehavior>();
+        }
         currentCamera = Camera.main;
         cam1.enabled = true;
         cam2.enabled = false;
@@ -42,9 +47,9 @@ public class Player : MonoBehaviour
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
         // Rotate the character so transform.up is facing the planetCore.transform.position
         // Grab the object named Main Camera and rotate it by the mouse's x and y values
-        for(int i = 0; i < cameraArray.Length; i++)
+        for(int i = 0; i < cameras.Length; i++)
         {
-            cameraArray[i].rotateHelper(mouseY * mouseSensitivity, mouseX * mouseSensitivity, 0f);
+            cameras[i].rotateHelper(mouseY * mouseSensitivity, mouseX * mouseSensitivity, 0f);
         }
         // transform.Rotate(Quaternion.LookRotation(currentCamera.transform.forward, transform.forward));
         Debug.DrawRay(transform.position, transform.forward);
