@@ -48,9 +48,18 @@ public class Player : MonoBehaviour
             moveDirection *= speed * Time.deltaTime;
             //characterController.SimpleMove(moveDirection);
         }
+        
+        upDirection = transform.position - planetCore.transform.position;
+
+        // Raycast down to find the ground
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, -upDirection, out hit, 100)){
+            upDirection = hit.normal;
+        }
+        Debug.DrawRay(transform.position, upDirection);
 
         // // Set the up direction to the normalized vector from the player to the core
-        upDirection = transform.position - planetCore.transform.position;
+        
         // //transform.rotation = Vector3.Lerp(transform.position, planetCore.transform.position, rotationSpeed);
         // currentEulerAngles = upDirection * Time.deltaTime * rotationSpeed;
         // currentRotation.eulerAngles = currentEulerAngles;
