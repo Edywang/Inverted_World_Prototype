@@ -33,7 +33,8 @@ public class Player : MonoBehaviour
         // Physics.Raycast(transform.position, -upDirection, out hit, 100);
         // Debug.DrawRay(transform.position, upDirection);
 
-        transform.LookAt(upDirection);
+        transform.LookAt(planetCore.transform.position);
+        Debug.DrawRay(transform.position, transform.forward);
 
         // WASD movement using characterController
         if (Input.GetKey(KeyCode.W)){
