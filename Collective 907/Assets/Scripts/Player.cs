@@ -51,7 +51,7 @@ public class Player : MonoBehaviour
         // Grab the object named Main Camera and rotate it by the mouse's x and y values
         for(int i = 0; i < cameras.Length; i++)
         {
-            cameras[i].rotateHelper(mouseY * mouseSensitivity, mouseX * mouseSensitivity, 0f);
+            cameras[i].rotateHelper(Vector3(mouseY * mouseSensitivity, mouseX * mouseSensitivity, 0f), Space.Self);
         }
         // transform.Rotate(Quaternion.LookRotation(currentCamera.transform.forward, transform.forward));
         Debug.DrawRay(transform.position, transform.forward);
