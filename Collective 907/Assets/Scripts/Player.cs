@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     CharacterController characterController;
     GameObject planetCore;
     private Camera currentCamera, cam1, cam2;
-    private Camera[] cameras;
+    private GameObject[] cameras;
     private Vector3 upDirection;
 
     // Start is called before the first frame update
