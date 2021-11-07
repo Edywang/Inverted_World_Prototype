@@ -4,28 +4,21 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private Vector3 lastDirection;
-    public Vector3 currentEulerAngles;
-    Quaternion currentRotation;
-    public float speed;
-    public float rotationSpeed;
+    private float speed;
     CharacterController characterController;
     GameObject planetCore;
     private Camera currentCamera, cam1, cam2;
-    private Vector3 moveDirection;
-    public Vector3 upDirection;
+    private Vector3 upDirection;
 
     // Start is called before the first frame update
     void Start()
     {
         characterController = GetComponent<CharacterController>();
         planetCore = GameObject.FindGameObjectWithTag("Core");
-        lastDirection = transform.position - planetCore.transform.position;
         currentCamera = Camera.main;
         cam1.enabled = true;
         cam2.enabled = false;
         // Create a vector that is the character's orientation
-        moveDirection = transform.TransformDirection(Vector3.forward);
     }
 
     // FixedUpdate is called once per frame
@@ -40,22 +33,12 @@ public class Player : MonoBehaviour
         // movement = Vector3.ClampMagnitude(movement, 1);
         // movement *= speed * Time.deltaTime;
         // characterController.SimpleMove(movement);
-        // Basic character movement based off character controller and moveDirection
-
-        if (characterController.isGrounded){
-            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-            moveDirection = transform.TransformDirection(moveDirection);
-            moveDirection *= speed * Time.deltaTime;
-            //characterController.SimpleMove(moveDirection);
-        }
         
         upDirection = transform.position - planetCore.transform.position;
 
         // Raycast down to find the ground
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, -upDirection, out hit, 100)){
-            upDirection = hit.normal;
-        }
+        Physics.Raycast(transform.position, -upDirection, out hit, 100);
         Debug.DrawRay(transform.position, upDirection);
 
         // WASD movement using characterController
@@ -91,16 +74,5 @@ public class Player : MonoBehaviour
             cam1.enabled = !cam1.enabled;
             cam2.enabled = !cam2.enabled;
         }
-    }
-
-    void LateUpdate()
-    {
-        // Determine the player's position from the core
-        //Vector3.Angle(lastDirection, upDirection)
-        // transform.Rotate(upDirection);
-        // lastDirection = upDirection;
-        // Quaternion targetRotation = Quaternion.LookRotation (planetCore.transform.position - transform.position);
-        // float str = Mathf.Min(rotationSpeed * Time.deltaTime, 1);
-        // transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, str);
     }
 }
