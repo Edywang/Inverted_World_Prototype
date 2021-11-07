@@ -58,6 +58,21 @@ public class Player : MonoBehaviour
         }
         Debug.DrawRay(transform.position, upDirection);
 
+        // WASD movement using characterController
+        if (Input.GetKey(KeyCode.W)){
+            characterController.Move(transform.forward * speed * Time.deltaTime);
+        }
+        if (Input.GetKey(KeyCode.S)){
+            characterController.Move(transform.forward * -speed * Time.deltaTime);
+        }
+        if (Input.GetKey(KeyCode.A)){
+            characterController.Move(transform.right * -speed * Time.deltaTime);
+        }
+        if (Input.GetKey(KeyCode.D)){
+            characterController.Move(transform.right * speed * Time.deltaTime);
+        }
+        
+
         // // Set the up direction to the normalized vector from the player to the core
         
         // //transform.rotation = Vector3.Lerp(transform.position, planetCore.transform.position, rotationSpeed);
