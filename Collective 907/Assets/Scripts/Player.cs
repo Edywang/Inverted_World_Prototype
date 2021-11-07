@@ -42,12 +42,14 @@ public class Player : MonoBehaviour
         Physics.Raycast(transform.position, -upDirection, out hit, 100);
         Debug.DrawRay(transform.position, upDirection);
 
+        transform.LookAt(upDirection);
+
         // WASD movement using characterController
         if (Input.GetKey(KeyCode.W)){
-            characterController.Move(transform.forward * speed * Time.deltaTime);
+            characterController.Move(transform.up * speed * Time.deltaTime);
         }
         if (Input.GetKey(KeyCode.S)){
-            characterController.Move(transform.forward * -speed * Time.deltaTime);
+            characterController.Move(transform.up * -speed * Time.deltaTime);
         }
         if (Input.GetKey(KeyCode.A)){
             characterController.Move(transform.right * -speed * Time.deltaTime);
