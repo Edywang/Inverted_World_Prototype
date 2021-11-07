@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
         for (int i = 0; i < cameraArray.Length; i++)
         {   
             cameras[i] = cameraArray[i].GetComponent<CameraBehavior>();
-            Debug.Log(cameras[i].name);
+            //Debug.Log(cameras[i].name);
         }
         currentCamera = Camera.main;
         cam1.enabled = true;
@@ -49,14 +49,16 @@ public class Player : MonoBehaviour
         {
             cameras[i].rotateHelper(mouseMovement, Space.Self);
         }
-        //playerModel.transform.LookAt(planetCore.transform.position);
+        playerModel.transform.LookAt(planetCore.transform.position);
         //Vector3 temp = (mouseMovement.normalized - upDirection.normalized) * mouseMovement.magnitude;
-        playerModel.transform.LookAt(Vector3.ProjectOnPlane(upDirection, currentCamera.transform.forward));
+        playerModel.transform.LookAt(Vector3.ProjectOnPlane(upDirection.normalized, currentCamera.transform.forward.normalized));
         //playerModel.transform.Rotate(temp);
         //Debug.Log(temp);
-
+        // Debug.Log("Current Camera forward: " + currentCamera.transform.forward);
+        // Debug.Log("up Direction: " + upDirection);
+        // Debug.Log("VECTOR3: " + Vector3.ProjectOnPlane(upDirection.normalized, currentCamera.transform.forward.normalized));
         // transform.Rotate(Quaternion.LookRotation(currentCamera.transform.forward, transform.forward));
-        Debug.DrawRay(transform.position, transform.forward);
+        //Debug.DrawRay(transform.position, transform.forward);
 
         // WASD movement using characterController
         if (Input.GetKey(KeyCode.W)){
@@ -75,8 +77,8 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.Space) && characterController.isGrounded){
             characterController.Move(upDirection.normalized * jumpForce * Time.deltaTime);
         }
-        Debug.DrawRay(playerModel.transform.position, playerModel.transform.forward);
-        Debug.DrawRay(playerModel.transform.position, playerModel.transform.right);
+        //Debug.DrawRay(playerModel.transform.position, playerModel.transform.forward);
+        //Debug.DrawRay(playerModel.transform.position, playerModel.transform.right);
         // Toggle camera POVs
         if (Input.GetKeyDown(KeyCode.C))
         {

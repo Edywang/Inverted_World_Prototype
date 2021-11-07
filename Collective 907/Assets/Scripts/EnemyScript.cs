@@ -11,6 +11,7 @@ public class EnemyScript : MonoBehaviour
     public float aggroRadius;
     Vector3 startPosition;
     Animator anim;
+    public float health;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +33,13 @@ public class EnemyScript : MonoBehaviour
         }
         else {
             agent.SetDestination(startPosition);
+        }
+    }
+    
+    public void takeHit(float damage){
+        health -= damage;
+        if(health <= 0.0f) {
+            Destroy(this.gameObject);
         }
     }
 }
