@@ -25,7 +25,9 @@ public class EnemyScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        anim.SetBool("isAttacking", true);
+        if (this.gameObject.tag == "Enemy") {
+            anim.SetBool("isAttacking", true);
+        }
         Vector3 vectortoTarget = player.transform.position - transform.position;
         float distanceToTarget = vectortoTarget.magnitude;
         if(distanceToTarget <= aggroRadius) {

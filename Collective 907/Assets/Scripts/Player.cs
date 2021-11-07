@@ -30,8 +30,6 @@ public class Player : MonoBehaviour
             //Debug.Log(cameras[i].name);
         }
         currentCamera = Camera.main;
-        cam1.enabled = true;
-        cam2.enabled = false;
         // Create a vector that is the character's orientation
     }
 
@@ -49,9 +47,10 @@ public class Player : MonoBehaviour
         {
             cameras[i].rotateHelper(mouseMovement, Space.Self);
         }
-        playerModel.transform.LookAt(planetCore.transform.position);
+        //playerModel.transform.LookAt(planetCore.transform.position);
         //Vector3 temp = (mouseMovement.normalized - upDirection.normalized) * mouseMovement.magnitude;
-        playerModel.transform.LookAt(Vector3.ProjectOnPlane(upDirection.normalized, currentCamera.transform.forward.normalized));
+        playerModel.transform.Rotate(Quaternion.FromToRotation(playerModel.transform.forward, Vector3.ProjectOnPlane(currentCamera.transform.forward.normalized, upDirection.normalized)).normalized.eulerAngles,Space.World);
+        transform.Rotate(Quaternion.FromToRotation(playerModel.transform.forward, Vector3.ProjectOnPlane(currentCamera.transform.forward.normalized, upDirection.normalized)).normalized.eulerAngles,Space.World);
         //playerModel.transform.Rotate(temp);
         //Debug.Log(temp);
         // Debug.Log("Current Camera forward: " + currentCamera.transform.forward);
@@ -68,10 +67,10 @@ public class Player : MonoBehaviour
             characterController.Move(playerModel.transform.forward * -speed * Time.deltaTime);
         }
         if (Input.GetKey(KeyCode.A)){
-            characterController.Move(playerModel.transform.right * speed * Time.deltaTime);
+            characterController.Move(playerModel.transform.right * -speed * Time.deltaTime);
         }
         if (Input.GetKey(KeyCode.D)){
-            characterController.Move(playerModel.transform.right * -speed * Time.deltaTime);
+            characterController.Move(playerModel.transform.right * speed * Time.deltaTime);
         }
         // Add jumping based off of jumpForce
         if (Input.GetKey(KeyCode.Space) && characterController.isGrounded){
@@ -79,12 +78,6 @@ public class Player : MonoBehaviour
         }
         //Debug.DrawRay(playerModel.transform.position, playerModel.transform.forward);
         //Debug.DrawRay(playerModel.transform.position, playerModel.transform.right);
-        // Toggle camera POVs
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            cam1.enabled = !cam1.enabled;
-            cam2.enabled = !cam2.enabled;
-        }
 
     }
 }

@@ -7,12 +7,14 @@ public class CameraBehavior : MonoBehaviour
     // public float mouseSensitivity = 1f;
     public float damage;
     // float xRotation = 0f;
+    public LaserScript laserScript;
     // Start is called before the first frame update
-    ParticleSystem part;
+    public ParticleSystem part;
+    public GameObject planetCore;
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        part = GetComponent<ParticleSystem>();
+        //part = GetComponent<ParticleSystem>();
     }
 
     // Update is called once per frame
@@ -31,12 +33,14 @@ public class CameraBehavior : MonoBehaviour
         part.Play();
         Ray ray = new Ray(startPosition, direction);
         //LineRenderer.DrawRay(transform.position, ray);
-        Debug.Log("ray: " + ray);
+        //Debug.Log("ray: " + ray);
         if(Physics.Raycast(ray, out RaycastHit hit)){
+            laserScript.SetLaserPositions(planetCore.transform.position, hit);
             EnemyScript target = hit.collider.transform.gameObject.GetComponent<EnemyScript>();
-            Debug.Log("HIT: " + hit.collider.transform.gameObject.name);
+            //Debug.Log("HIT: " + hit.collider.transform.gameObject.name);
             if (target != null) {
                 target.takeHit(damage);
+                Debug.Log("HIT: " + damage);
             }
         }
     }
