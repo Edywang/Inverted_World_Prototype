@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
         transform.LookAt(planetCore.transform.position);
 
         // Rotate the character so transform.up is facing the planetCore.transform.position
-        transform.rotation = Quaternion.LookRotation(GameObject.Find("Main Camera").GetComponent<CameraBehavior>().currentCamera.transform.forward, transform.forward);
+        transform.Rotate(Quaternion.LookRotation(currentCamera.transform.forward, transform.forward));
         Debug.DrawRay(transform.position, transform.forward);
 
         // WASD movement using characterController
