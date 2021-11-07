@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     public float jumpForce;
     public float mouseSensitivity;
     CharacterController characterController;
+    GameObject playerModel; 
     GameObject planetCore;
     private Camera currentCamera, cam1, cam2;
     private CameraBehavior[] cameras;
@@ -20,6 +21,8 @@ public class Player : MonoBehaviour
         planetCore = GameObject.FindGameObjectWithTag("Core");
         GameObject[] cameraArray = new GameObject[GameObject.FindGameObjectsWithTag("MainCamera").Length];
         cameraArray = GameObject.FindGameObjectsWithTag("MainCamera");
+        // Set the playerModel to the object with the name Player Model
+        playerModel = GameObject.Find("Player Model");
         cameras = new CameraBehavior[cameraArray.Length];
         for (int i = 0; i < cameraArray.Length; i++)
         {   
@@ -35,41 +38,35 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        upDirection = planetCore.transform.position - transform.position;
-
-        // Raycast down to find the ground
-
-        // RaycastHit hit;
-        // Physics.Raycast(transform.position, -upDirection, out hit, 100);
-        // Debug.DrawRay(transform.position, upDirection);
-
-        transform.LookAt(planetCore.transform.position);
+        upDirection = playerModel.transform.position - transform.position;
+        
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
         // Rotate the character so transform.up is facing the planetCore.transform.position
         // Grab the object named Main Camera and rotate it by the mouse's x and y values
-        mouseMovement = new Vector3(-mouseY * mouseSensitivity, mouseX * mouseSensitivity, 0f);
+        Vector3 mouseMovement = new Vector3(-mouseY * mouseSensitivity, mouseX * mouseSensitivity, 0f);
         for(int i = 0; i < cameras.Length; i++)
         {
             cameras[i].rotateHelper(mouseMovement, Space.Self);
         }
-        transform.Rotate((mouseMovement.normalized - upDirection.normalized).normalized * mouseMovement.magnitude);
+        playerModel.LookAt(planetCore.transform.position);
+        playerModel.transform.Rotate((mouseMovement.normalized - upDirection.normalized).normalized * mouseMovement.magnitude);
 
         // transform.Rotate(Quaternion.LookRotation(currentCamera.transform.forward, transform.forward));
         Debug.DrawRay(transform.position, transform.forward);
 
         // WASD movement using characterController
         if (Input.GetKey(KeyCode.W)){
-            characterController.Move(transform.up * speed * Time.deltaTime);
+            characterController.Move(playerModel.up * speed * Time.deltaTime);
         }
         if (Input.GetKey(KeyCode.S)){
-            characterController.Move(transform.up * -speed * Time.deltaTime);
+            characterController.Move(playerModel.up * -speed * Time.deltaTime);
         }
         if (Input.GetKey(KeyCode.A)){
-            characterController.Move(transform.right * -speed * Time.deltaTime);
+            characterController.Move(playerModel.right * -speed * Time.deltaTime);
         }
         if (Input.GetKey(KeyCode.D)){
-            characterController.Move(transform.right * speed * Time.deltaTime);
+            characterController.Move(playerModel.right * speed * Time.deltaTime);
         }
         // Add jumping based off of jumpForce
         if (Input.GetKey(KeyCode.Space) && characterController.isGrounded){
