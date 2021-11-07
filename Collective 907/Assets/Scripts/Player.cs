@@ -49,29 +49,34 @@ public class Player : MonoBehaviour
         {
             cameras[i].rotateHelper(mouseMovement, Space.Self);
         }
-        playerModel.LookAt(planetCore.transform.position);
-        playerModel.transform.Rotate((mouseMovement.normalized - upDirection.normalized).normalized * mouseMovement.magnitude);
+        //playerModel.transform.LookAt(planetCore.transform.position);
+        //Vector3 temp = (mouseMovement.normalized - upDirection.normalized) * mouseMovement.magnitude;
+        playerModel.transform.LookAt(Vector3.ProjectOnPlane(upDirection, currentCamera.transform.forward));
+        //playerModel.transform.Rotate(temp);
+        //Debug.Log(temp);
 
         // transform.Rotate(Quaternion.LookRotation(currentCamera.transform.forward, transform.forward));
         Debug.DrawRay(transform.position, transform.forward);
 
         // WASD movement using characterController
         if (Input.GetKey(KeyCode.W)){
-            characterController.Move(playerModel.up * speed * Time.deltaTime);
+            characterController.Move(playerModel.transform.forward * speed * Time.deltaTime);
         }
         if (Input.GetKey(KeyCode.S)){
-            characterController.Move(playerModel.up * -speed * Time.deltaTime);
+            characterController.Move(playerModel.transform.forward * -speed * Time.deltaTime);
         }
         if (Input.GetKey(KeyCode.A)){
-            characterController.Move(playerModel.right * -speed * Time.deltaTime);
+            characterController.Move(playerModel.transform.right * speed * Time.deltaTime);
         }
         if (Input.GetKey(KeyCode.D)){
-            characterController.Move(playerModel.right * speed * Time.deltaTime);
+            characterController.Move(playerModel.transform.right * -speed * Time.deltaTime);
         }
         // Add jumping based off of jumpForce
         if (Input.GetKey(KeyCode.Space) && characterController.isGrounded){
             characterController.Move(upDirection.normalized * jumpForce * Time.deltaTime);
         }
+        Debug.DrawRay(playerModel.transform.position, playerModel.transform.forward);
+        Debug.DrawRay(playerModel.transform.position, playerModel.transform.right);
         // Toggle camera POVs
         if (Input.GetKeyDown(KeyCode.C))
         {
