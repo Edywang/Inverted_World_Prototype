@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     CharacterController characterController;
     GameObject planetCore;
     private Camera currentCamera, cam1, cam2;
-    private CameraBehavior cameraBehavior;
+    private CameraBehavior[] cameras;
     private Vector3 upDirection;
 
     // Start is called before the first frame update
@@ -20,14 +20,13 @@ public class Player : MonoBehaviour
         planetCore = GameObject.FindGameObjectWithTag("Core");
         GameObject[] cameraArray = new GameObject[GameObject.FindGameObjectsWithTag("MainCamera").Length];
         cameraArray = GameObject.FindGameObjectsWithTag("MainCamera");
-        // cameras = new CameraBehavior[cameraArray.Length];
-        // for (int i = 0; i < cameraArray.Length; i++)
-        // {   
-        //     cameras[i] = cameraArray[i].GetComponent<CameraBehavior>();
-        //     Debug.Log(cameras[i].name);
-        // }
+        cameras = new CameraBehavior[cameraArray.Length];
+        for (int i = 0; i < cameraArray.Length; i++)
+        {   
+            cameras[i] = cameraArray[i].GetComponent<CameraBehavior>();
+            Debug.Log(cameras[i].name);
+        }
         currentCamera = Camera.main;
-        cameraBehavior = currentCamera.GetComponent<CameraBehavior>();
         cam1.enabled = true;
         cam2.enabled = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -50,11 +49,10 @@ public class Player : MonoBehaviour
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
         // Rotate the character so transform.up is facing the planetCore.transform.position
         // Grab the object named Main Camera and rotate it by the mouse's x and y values
-        // for(int i = 0; i < cameras.Length; i++)
-        // {
-        //     cameras[i].rotateHelper(new Vector3(mouseY * mouseSensitivity, mouseX * mouseSensitivity, 0f), Space.Self);
-        // }
-        cameraBehavior.rotateHelper(new Vector3(mouseY * mouseSensitivity, mouseX * mouseSensitivity, 0f), Space.Self);
+        for(int i = 0; i < cameras.Length; i++)
+        {
+            cameras[i].rotateHelper(Vector3(mouseY * mouseSensitivity, mouseX * mouseSensitivity, 0f), Space.Self);
+        }
         // transform.Rotate(Quaternion.LookRotation(currentCamera.transform.forward, transform.forward));
         Debug.DrawRay(transform.position, transform.forward);
 
