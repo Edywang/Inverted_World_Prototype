@@ -57,7 +57,7 @@ public class Player : MonoBehaviour
         }
         // Add jumping based off of jumpForce
         if (Input.GetKey(KeyCode.Space) && characterController.isGrounded){
-            characterController.Move(transform.up * jumpForce * Time.deltaTime);
+            characterController.Move(upDirection.normalized * jumpForce * Time.deltaTime);
         }
 
         // // Set the up direction to the normalized vector from the player to the core
