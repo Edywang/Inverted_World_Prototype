@@ -22,11 +22,11 @@ public class Player : MonoBehaviour
         // Create a vector that is the character's orientation
     }
 
-    // FixedUpdate is called once per frame
-    void FixedUpdate()
+    // Update is called once per frame
+    void Update()
     {
-        upDirection = transform.position - planetCore.transform.position;
-        
+        upDirection = planetCore.transform.position - transform.position;
+
         // Raycast down to find the ground
 
         // RaycastHit hit;
@@ -34,6 +34,9 @@ public class Player : MonoBehaviour
         // Debug.DrawRay(transform.position, upDirection);
 
         transform.LookAt(planetCore.transform.position);
+
+        // Rotate the character so transform.up is facing the planetCore.transform.position
+        transform.rotation = Quaternion.LookRotation(GameObject.Find("Main Camera").GetComponent<CameraBehavior>().currentCamera.transform.forward, transform.forward);
         Debug.DrawRay(transform.position, transform.forward);
 
         // WASD movement using characterController
