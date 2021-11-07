@@ -18,11 +18,13 @@ public class Player : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
         planetCore = GameObject.FindGameObjectWithTag("Core");
+        GameObject[] cameraArray = new GameObject[GameObject.FindGameObjectsWithTag("MainCamera").Length];
         cameraArray = GameObject.FindGameObjectsWithTag("MainCamera");
         cameras = new CameraBehavior[cameraArray.Length];
         for (int i = 0; i < cameraArray.Length; i++)
-        {
+        {   
             cameras[i] = cameraArray[i].GetComponent<CameraBehavior>();
+            Debug.Log(cameras[i].name);
         }
         currentCamera = Camera.main;
         cam1.enabled = true;
